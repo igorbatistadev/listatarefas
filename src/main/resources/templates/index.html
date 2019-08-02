@@ -12,7 +12,7 @@
 				<div class="row">
 					<h5>Tarefas afazer</h5>
 					<table class="responsive-table highlight">
-						<thead class="">
+						<thead>
 							<tr>
 								<th>Descricao</th>
 								<th>Data de criacao</th>
@@ -23,6 +23,9 @@
 							</tr>
 						</thead>
 						<tbody>
+							<tr th:if="${tarefasafazer.empty}">
+								<td colspan="12" class="center"><span>Nao existe nenhuma tarefa para executar</span></td>
+							</tr>
 							<tr th:each="tarefa : ${tarefasafazer}">
 								<td><span th:text="${tarefa.descricao}"></span></td>
 								<td><span th:text="${tarefa.data_criacao}"></span></td>
@@ -30,7 +33,7 @@
 								<td><a class="waves-effect waves-light btn" > 
 									<i class="large material-icons">edit</i></a>
 								</td>
-								<td><a class="waves-effect waves-light btn red" > 
+								<td><a class="waves-effect waves-light btn red" th:href="@{/deletar?id={id}(id=${tarefa.id})}"> 
 									<i class="large material-icons">delete</i></a>
 								</td>
 								<td><a class="waves-effect waves-light btn" th:href="@{/finalizar?id={id}(id=${tarefa.id})}">Finalizar</a>
@@ -42,7 +45,7 @@
 				<div class="row">
 					<h5>Tarefas concluidas</h5>
 					<table class="responsive-table highlight">
-						<thead class="">
+						<thead>
 							<tr>
 								<th>Descricao</th>
 								<th>Data de criacao</th>
@@ -52,13 +55,16 @@
 							</tr>
 						</thead>
 						<tbody>
+							<tr th:if="${tarefasconcluidas.empty}">
+								<td colspan="12" class="center"><span>Nao existe nenhuma tarefa concluida</span></td>
+							</tr>
 							<tr th:each="tarefa : ${tarefasconcluidas}">
 								<td><span th:text="${tarefa.descricao}"></span></td>
 								<td><span th:text="${tarefa.data_criacao}"></span></td>
 								<td><span th:text="${tarefa.data_conclusao}"></span></td>
 								<td><span th:text="${tarefa.status}"></span></td>
 								<td>
-									<a class="waves-effect waves-light btn red">
+									<a class="waves-effect waves-light btn red" th:href="@{/deletar?id={id}(id=${tarefa.id})}">
 										<i class="large material-icons">delete</i>
 									</a>
 								</td>

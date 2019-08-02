@@ -59,4 +59,10 @@ public class TarefaController {
 		return "redirect:/tarefas";
 	}
 	
+	@RequestMapping(path="/deletar")
+	public String deletarTarefa(@RequestParam("id") Long id) {
+		tr.deleteById(id);	
+		return "redirect:/tarefas";
+	}
+	
 }
