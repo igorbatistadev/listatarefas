@@ -10,11 +10,13 @@
 					<form class="col s12" method="post">
 						<div class="row">
 							<div class="input-field col s10">
-								<textarea id="textarea1" class="materialize-textarea" name="descricao"></textarea>
+								<textarea id="textarea1" class="materialize-textarea" name="descricao" th:if="${!edit}"></textarea>
+								<textarea id="textarea1" class="materialize-textarea" name="descricao" th:if="${edit}" th:text="${tarefa.descricao}"></textarea>
 								<label for="textarea1">Digite sua tarefa</label>
 							</div>
 							<div class="col s2 input-field">
-								<button class="btn waves-effect waves-light" type="submit">Adicionar</button>
+								<button class="btn waves-effect waves-light" type="submit" th:if="${!edit}">Adicionar</button>
+								<button class="btn waves-effect waves-light" type="submit" th:if="${edit}">Atualizar</button>
 							</div>
 						</div>
 					</form>

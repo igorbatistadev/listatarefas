@@ -30,7 +30,7 @@
 								<td><span th:text="${tarefa.descricao}"></span></td>
 								<td><span th:text="${tarefa.data_criacao}"></span></td>
 								<td><span th:text="${tarefa.status}"></span></td>
-								<td><a class="waves-effect waves-light btn" > 
+								<td><a class="waves-effect waves-light btn" th:href="@{/editar?id={id}(id=${tarefa.id})}"> 
 									<i class="large material-icons">edit</i></a>
 								</td>
 								<td><a class="waves-effect waves-light btn red" th:href="@{/deletar?id={id}(id=${tarefa.id})}"> 

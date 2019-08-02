@@ -36,8 +36,11 @@ public class TarefaController {
 	}
 	
 	@RequestMapping(path="/adicionar", method = RequestMethod.GET)
-	public String formAdd() {
-		return "formAdicionar";
+	public String formAdd(ModelMap model) {
+		
+		model.addAttribute("edit", false);
+		
+		return "formTarefa";
 	}
 	
 	@RequestMapping(path="/adicionar", method = RequestMethod.POST)
@@ -45,6 +48,28 @@ public class TarefaController {
 		
 		tarefa.setData_criacao(Calendar.getInstance().getTime());
 		tr.save(tarefa);
+		
+		return "redirect:/tarefas";
+	}
+	
+	@RequestMapping(path="/editar")
+	public String editar(@RequestParam("id") Long id, ModelMap model) {
+		
+		Tarefa tarefa = tr.getOne(id);
+		if(tarefa.getStatus().equals(Status.CONCLUIDA)){
+			return "redirect:/tarefas";
+		} else {
+			model.addAttribute("tarefa", tarefa);
+			model.addAttribute("edit", true);
+			
+			return "formTarefa";
+		}	
+	}
+	
+	@RequestMapping(path="/editar", method = RequestMethod.POST)
+	public String atualizar(Tarefa tarefa) {
+		
+		tr.saveAndFlush(tarefa);
 		
 		return "redirect:/tarefas";
 	}
@@ -64,5 +89,4 @@ public class TarefaController {
 		tr.deleteById(id);	
 		return "redirect:/tarefas";
 	}
-	
 }
