@@ -32,6 +32,20 @@ public class TarefaController {
 		Iterable<Tarefa> tarefasconcluidas = tr.buscaTarefas("CONCLUIDA");
 		mv.addObject("tarefasafazer", tarefasafazer);
 		mv.addObject("tarefasconcluidas", tarefasconcluidas);
+		mv.addObject("tempesquisa",false);
+		mv.addObject("textpesquisa","");
+		return mv;
+	}
+	
+	@RequestMapping(path="/tarefas", method = RequestMethod.POST)
+	public ModelAndView tarefas(@RequestParam("pesquisa") String pesquisa, ModelMap model) {
+		ModelAndView mv = new ModelAndView("index");
+		Iterable<Tarefa> tarefasafazer = tr.buscaTarefas(pesquisa, "AFAZER");
+		Iterable<Tarefa> tarefasconcluidas = tr.buscaTarefas(pesquisa, "CONCLUIDA");
+		mv.addObject("tarefasafazer", tarefasafazer);
+		mv.addObject("tarefasconcluidas", tarefasconcluidas);
+		mv.addObject("tempesquisa",true);
+		mv.addObject("textpesquisa", pesquisa);
 		return mv;
 	}
 	

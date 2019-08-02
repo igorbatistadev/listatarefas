@@ -7,10 +7,23 @@
 		<section layout:fragment="content">
 			<div class="container">
 				<div class="row">
-					<h5>Adicionar tarefa <a th:href="@{/adicionar}" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">add</i></a></h5>
+					<h5>Adicionar tarefa <a th:href="@{/adicionar}" class="btn-floating btn-small waves-effect waves-light light-blue darken-3"><i class="material-icons">add</i></a></h5>
 				</div>
+				<nav>
+					<div class="nav-wrapper light-blue darken-3">
+						<form method="POST">
+							<div class="input-field">
+								<input id="search" type="search" required name="pesquisa" th:if="${tempesquisa}" th:value="${textpesquisa}">
+								<input id="search" type="search" required name="pesquisa" th:if="${!tempesquisa}">
+								<label class="label-icon active" for="search" th:if="${tempesquisa}"><i class="material-icons">search</i></label>
+								<label class="label-icon" for="search" th:if="${!tempesquisa}"><i class="material-icons">search</i></label>
+								<i class="material-icons"><a th:href="@{/tarefas}">close</a></i>
+							</div>
+						</form>
+					</div>
+				</nav>
 				<div class="row">
-					<h5>Tarefas afazer</h5>
+					<h5>Tarefas a fazer</h5>
 					<table class="responsive-table highlight">
 						<thead>
 							<tr>
@@ -30,13 +43,13 @@
 								<td><span th:text="${tarefa.descricao}"></span></td>
 								<td><span th:text="${tarefa.data_criacao}"></span></td>
 								<td><span th:text="${tarefa.status}"></span></td>
-								<td><a class="waves-effect waves-light btn" th:href="@{/editar?id={id}(id=${tarefa.id})}"> 
+								<td><a class="waves-effect waves-light btn light-blue darken-3" th:href="@{/editar?id={id}(id=${tarefa.id})}"> 
 									<i class="large material-icons">edit</i></a>
 								</td>
 								<td><a class="waves-effect waves-light btn red" th:href="@{/deletar?id={id}(id=${tarefa.id})}"> 
 									<i class="large material-icons">delete</i></a>
 								</td>
-								<td><a class="waves-effect waves-light btn" th:href="@{/finalizar?id={id}(id=${tarefa.id})}">Finalizar</a>
+								<td><a class="waves-effect waves-light btn green accent-4" th:href="@{/finalizar?id={id}(id=${tarefa.id})}">Finalizar</a>
 								</td>
 							</tr>
 						</tbody>
