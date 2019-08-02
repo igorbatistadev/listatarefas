@@ -1,5 +1,7 @@
 package com.listatarefas.models;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +15,9 @@ import javax.persistence.TemporalType;
 import com.listatarefas.models.Enum.Status;
 
 @Entity
-public class Tarefa {
+public class Tarefa implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,14 +49,16 @@ public class Tarefa {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getData_criacao() {
-		return data_criacao;
+	public String getData_criacao() {
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+		return fmt.format(data_criacao);
 	}
 	public void setData_criacao(Date data_criacao) {
 		this.data_criacao = data_criacao;
 	}
-	public Date getData_conclusao() {
-		return data_conclusao;
+	public String getData_conclusao() {
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+		return fmt.format(data_conclusao);
 	}
 	public void setData_conclusao(Date data_conclusao) {
 		this.data_conclusao = data_conclusao;

@@ -9,6 +9,35 @@
 				<div class="row">
 					<h5>Adicionar tarefa <a th:href="@{/adicionar}" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">add</i></a></h5>
 				</div>
+				<div class="row">
+				<table class="responsive-table highlight">
+					<thead class="">
+						<tr>
+							<th>Descricao</th>
+							<th>Data de criacao</th>
+							<th>Status</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+							<th>Finalizar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tarefa : ${tarefas}">
+							<td><span th:text="${tarefa.descricao}"></span></td>
+							<td><span th:text="${tarefa.data_criacao}"></span></td>
+							<td><span th:text="${tarefa.status}"></span></td>
+							<td><a class="waves-effect waves-light btn" > 
+								<i class="large material-icons">edit</i></a>
+							</td>
+							<td><a class="waves-effect waves-light btn red" > 
+								<i class="large material-icons">delete</i></a>
+							</td>
+							<td><a class="waves-effect waves-light btn" >Finalizar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			</div>	
 		</section>
 	</body>
